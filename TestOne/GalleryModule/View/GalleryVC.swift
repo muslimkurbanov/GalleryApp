@@ -16,9 +16,9 @@ class GalleryVC: UIViewController {
     
     //MARK: IBOutlets
     @IBOutlet weak var galleryCV: UICollectionView!
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    let cartManager = FavoriteManager.shared
     var presenter: GalleryPresenterProtocol!
     
     //MARK: - Lifecycle
@@ -27,7 +27,6 @@ class GalleryVC: UIViewController {
         
         self.galleryCV.delegate = self
         self.galleryCV.dataSource = self
-
     }
 
 }
@@ -48,12 +47,12 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = presenter.images[indexPath.row]
+        let isLiked = cartManager.isAddedToFavorite(item.id ?? "")
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detail") as? DetailImageVC else { return }
-        let presenter = DetailPresenter(view: vc, images: item)
+        let presenter = DetailPresenter(view: vc, images: item, isLiked: isLiked)
         vc.presenter = presenter
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
 //MARK: - Protocol
@@ -63,6 +62,7 @@ extension GalleryVC: GalleryViewProtocol {
         activityIndicator.stopAnimating()
         galleryCV.reloadData()
     }
+    
     func failure(error: Error) {
         print(error)
     }

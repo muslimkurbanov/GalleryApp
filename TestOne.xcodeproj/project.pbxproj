@@ -20,6 +20,7 @@
 		84CBAFD325E106220010F2C9 /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBAFD225E106220010F2C9 /* MainScreenVC.swift */; };
 		84CBAFDA25E109A00010F2C9 /* DetailImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBAFD925E109A00010F2C9 /* DetailImageVC.swift */; };
 		84CBAFE025E115180010F2C9 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBAFDF25E115180010F2C9 /* DetailPresenter.swift */; };
+		84CBAFE725E131320010F2C9 /* AddToFavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBAFE625E131320010F2C9 /* AddToFavoriteManager.swift */; };
 		D4412D8BCC82D210353CDC1B /* Pods_TestOne.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C301055E2D7BD6B4BDCE513A /* Pods_TestOne.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		84CBAFD225E106220010F2C9 /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
 		84CBAFD925E109A00010F2C9 /* DetailImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageVC.swift; sourceTree = "<group>"; };
 		84CBAFDF25E115180010F2C9 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		84CBAFE625E131320010F2C9 /* AddToFavoriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavoriteManager.swift; sourceTree = "<group>"; };
 		87F3F120EC342B538A570A17 /* Pods-TestOne.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOne.debug.xcconfig"; path = "Target Support Files/Pods-TestOne/Pods-TestOne.debug.xcconfig"; sourceTree = "<group>"; };
 		C301055E2D7BD6B4BDCE513A /* Pods_TestOne.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestOne.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				8472367025E0F8A400C8BA46 /* GalleryModel.swift */,
+				84CBAFE625E131320010F2C9 /* AddToFavoriteManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				8472365725E0F86600C8BA46 /* SceneDelegate.swift in Sources */,
 				84CBAFE025E115180010F2C9 /* DetailPresenter.swift in Sources */,
 				84CBAFD325E106220010F2C9 /* MainScreenVC.swift in Sources */,
+				84CBAFE725E131320010F2C9 /* AddToFavoriteManager.swift in Sources */,
 				8472367125E0F8A400C8BA46 /* GalleryModel.swift in Sources */,
 				8472366E25E0F89800C8BA46 /* GalleryPresenter.swift in Sources */,
 				84AAB7D625E0FA1300C862C7 /* GalleryNetworkService.swift in Sources */,

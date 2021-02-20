@@ -12,6 +12,7 @@ struct Image: Decodable {
     let description: String?
     let alt_description: String?
     let likes: Int?
+    let id: String?
 }
 enum URLKing: String {
     case raw
