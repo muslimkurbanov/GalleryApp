@@ -6,13 +6,19 @@
 //
 
 import Foundation
+import UIKit
 
-struct Image: Decodable {
-    let urls: [URLKing.RawValue:String]
-    let description: String?
-    let alt_description: String?
-    let likes: Int?
-    let id: String?
+struct Test {
+    static var shared = Test()
+    var image: UIImage?
+}
+
+struct Image: Decodable, Equatable {
+    var urls: [URLKing.RawValue:String]
+    var description: String?
+    var alt_description: String?
+    var likes: Int?
+    var id: String?
 }
 enum URLKing: String {
     case raw

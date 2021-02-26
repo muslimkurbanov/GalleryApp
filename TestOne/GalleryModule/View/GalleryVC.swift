@@ -21,10 +21,16 @@ class GalleryVC: UIViewController {
     let cartManager = FavoriteManager.shared
     var presenter: GalleryPresenterProtocol!
     
+    fileprivate var cart = Cart()
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Способ для создания презентера из вью конроллера
+        let presenter = GalleryPresenter(view: self)
+        self.presenter = presenter
+
         self.galleryCV.delegate = self
         self.galleryCV.dataSource = self
     }
@@ -49,8 +55,13 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegate {
         let item = presenter.images[indexPath.row]
         let isLiked = cartManager.isAddedToFavorite(item.id ?? "")
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detail") as? DetailImageVC else { return }
+        guard let favVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "favoriteVC") as? FavoriteImagesVC else { return }
+        
         let presenter = DetailPresenter(view: vc, images: item, isLiked: isLiked)
         vc.presenter = presenter
+        vc.delegate = self
+        
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -68,3 +79,15 @@ extension GalleryVC: GalleryViewProtocol {
     }
 }
 
+extension GalleryVC: DetailViewDelegate {
+    func addToFavorite(cell: GalleryCVCell) {
+        guard let indexPath = galleryCV.indexPath(for: cell) else { return }
+
+        let product = presenter.images[indexPath.row]
+        
+        cart.updateCart(with: product)
+        
+    }
+    
+    
+}

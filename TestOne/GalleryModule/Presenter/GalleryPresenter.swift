@@ -34,9 +34,7 @@ class GalleryPresenter: GalleryPresenterProtocol {
             DispatchQueue.main.async {
                 
                 switch result {
-            
                 case .success(let searchResponce):
-                    
                     self.searchResponce = searchResponce
                     guard let images = searchResponce else { return }
                     

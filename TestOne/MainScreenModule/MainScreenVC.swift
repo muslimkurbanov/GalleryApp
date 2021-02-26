@@ -11,7 +11,6 @@ class MainScreenVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
     }
 
@@ -21,7 +20,4 @@ class MainScreenVC: UIViewController {
         vc.presenter = presenter
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
-
 }

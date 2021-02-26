@@ -30,7 +30,6 @@ class GalleryNetworkService: GalleryNetworkServiceProtocol {
                         completion(.failure(error))
                     }
                 }
-                
             }
         }
     }
