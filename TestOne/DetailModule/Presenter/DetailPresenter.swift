@@ -9,9 +9,11 @@ import Foundation
 import UIKit
 
 protocol DetailPresenterProtocol: class {
-    init(view: DetailViewProtocol, images: Image, isLiked: Bool)
+    init(view: DetailViewProtocol, images: Image, isLiked: Bool, cell: Int)
     func setImages()
     var isLiked: Bool { get set }
+    var images: Image { get set }
+    var cell: Int { get set }
 }
 
 class DetailPresenter: DetailPresenterProtocol {
@@ -23,11 +25,13 @@ class DetailPresenter: DetailPresenterProtocol {
     
     var isLiked: Bool
     var images: Image
+    var cell: Int
     
-    required init(view: DetailViewProtocol, images: Image, isLiked: Bool) {
+    required init(view: DetailViewProtocol, images: Image, isLiked: Bool, cell: Int) {
         self.view = view
         self.images = images
         self.isLiked = isLiked
+        self.cell = cell
      }
     
     func setImages() {

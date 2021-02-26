@@ -12,7 +12,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var favoriteImageView: UIImageView!
     
-    func configurate(image: UIImage) {
-        favoriteImageView.image = image
+    func configurate(image: Image) {
+        favoriteImageView.sd_setImage(with: URL(string: image.urls["small"] ?? ""), completed: nil)
     }
 }

@@ -9,10 +9,6 @@ import UIKit
 import SDWebImage
 import AudioToolbox
 
-protocol FavoriteDelegate: class {
-    func append(image: UIImage)
-}
-
 protocol DetailViewDelegate: class {
     func addToFavorite(cell: GalleryCVCell)
 }
@@ -34,7 +30,6 @@ class DetailImageVC: UIViewController {
     public var id: String!
     
     weak var delegate: DetailViewDelegate?
-    weak var favoriteDelegare: FavoriteDelegate?
     
     var activityViewController: UIActivityViewController? = nil
     var presenter: DetailPresenterProtocol!
@@ -49,9 +44,7 @@ class DetailImageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.favoriteDelegare = favoriteView
-//        self.favoriteView
-//        vc.delegate = presenter
+        
         presenter.setImages()
         isLiked = presenter.isLiked
     }
@@ -76,11 +69,14 @@ class DetailImageVC: UIViewController {
             let cell = GalleryCVCell()
             self.delegate?.addToFavorite(cell: cell)
             
+            FavoriteImages.shared.items.append(presenter.images)
             
-            self.favoriteDelegare?.append(image: Test.shared.image!)
-
         } else {
-            return
+            if FavoriteImages.shared.items != [] {
+                FavoriteImages.shared.items.removeLast()
+            } else {
+                return
+            }
         }
     }
     
