@@ -14,7 +14,7 @@ class FavoriteImagesVC: UIViewController {
     @IBOutlet weak var emptyLabel: UILabel!
 
     let cartManager = FavoriteManager.shared
-
+    let a = 1
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
