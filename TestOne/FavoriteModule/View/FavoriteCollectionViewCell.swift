@@ -10,8 +10,10 @@ import SDWebImage
 
 class FavoriteCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - IBOutlets
     @IBOutlet weak var favoriteImageView: UIImageView!
     
+    //MARK: - Functions
     func configurate(image: Image) {
         favoriteImageView.sd_setImage(with: URL(string: image.urls["small"] ?? ""), completed: nil)
     }

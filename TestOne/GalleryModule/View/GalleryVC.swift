@@ -53,14 +53,14 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegate {
         let item = presenter.images[indexPath.row]
         let isLiked = cartManager.isAddedToFavorite(item.id ?? "")
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detail") as? DetailImageVC else { return }
-
+        
         let presenter = DetailPresenter(view: vc, images: item, isLiked: isLiked, cell: indexPath.row)
         vc.presenter = presenter
         navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-//MARK: - Protocol
+//MARK: - Protocols
 extension GalleryVC: GalleryViewProtocol {
     
     func success() {

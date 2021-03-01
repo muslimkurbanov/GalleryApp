@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//MARK: - Protocol
 protocol DetailPresenterProtocol: class {
     init(view: DetailViewProtocol, images: Image, isLiked: Bool, cell: Int)
     func setImages()
@@ -17,7 +18,6 @@ protocol DetailPresenterProtocol: class {
 }
 
 class DetailPresenter: DetailPresenterProtocol {
-    
     
     private weak var view: DetailViewProtocol?
     private var networkService: GalleryNetworkServiceProtocol = GalleryNetworkService()
@@ -34,10 +34,8 @@ class DetailPresenter: DetailPresenterProtocol {
         self.cell = cell
      }
     
+    //MARK: - Functions
     func setImages() {
-        print("simpleSetImages")
         self.view?.setImages(item: images, isLiked: isLiked)
     }
-
-    
 }

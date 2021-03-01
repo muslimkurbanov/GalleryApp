@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - Protocol
 protocol GalleryPresenterProtocol: class {
     init(view: GalleryViewProtocol)
     var images: [Image] { get set }
@@ -26,6 +27,7 @@ class GalleryPresenter: GalleryPresenterProtocol {
         self.getImages()
     }
     
+    //MARK: - Functions
     func getImages() {
         networkService.getImages(completion: { [weak self] result in
             

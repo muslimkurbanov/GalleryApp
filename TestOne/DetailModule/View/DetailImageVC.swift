@@ -9,6 +9,7 @@ import UIKit
 import SDWebImage
 import AudioToolbox
 
+//MARK: - Protocols
 protocol DetailViewDelegate: class {
     func addToFavorite(cell: GalleryCVCell)
 }
@@ -19,11 +20,11 @@ protocol DetailViewProtocol: class {
 
 class DetailImageVC: UIViewController {
     
+    //MARK: - IBOutlet
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    
     @IBOutlet weak var addToFavorite: UIButton!
 
     public var cartManager = FavoriteManager.shared
@@ -33,6 +34,7 @@ class DetailImageVC: UIViewController {
     
     var activityViewController: UIActivityViewController? = nil
     var presenter: DetailPresenterProtocol!
+    var favoriteView: FavoriteImagesVC?
     
     var isLiked: Bool = false {
         didSet {
@@ -40,8 +42,7 @@ class DetailImageVC: UIViewController {
         }
     }
     
-    var favoriteView: FavoriteImagesVC?
-    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +50,7 @@ class DetailImageVC: UIViewController {
         isLiked = presenter.isLiked
     }
     
+    //MARK: - IBActions
     @IBAction func shareImage(_ sender: Any) {
         let image = self.imageView.image
         self.activityViewController = UIActivityViewController(activityItems: [image ?? []], applicationActivities: nil)
@@ -70,11 +72,15 @@ class DetailImageVC: UIViewController {
             self.delegate?.addToFavorite(cell: cell)
             
             FavoriteImages.shared.items.append(presenter.images)
+            likesLabel.text = "Нравится: \(presenter.images.likes! + 1)"
             
         } else {
+            
             if FavoriteImages.shared.items != [] {
                 FavoriteImages.shared.items.removeLast()
+                likesLabel.text = "Нравится: \(presenter.images.likes ?? 0)"
             } else {
+                likesLabel.text = "Нравится: \(presenter.images.likes ?? 0)"
                 return
             }
         }
@@ -86,17 +92,18 @@ class DetailImageVC: UIViewController {
     }
 }
 
+//MARK: - DetailViewProtocol
 extension DetailImageVC: DetailViewProtocol {
     
     func setImages(item: Image, isLiked: Bool) {
         self.id = item.id
         nameLabel.text = item.description ?? "Нет названия"
         imageView.sd_setImage(with: URL(string: item.urls["regular"] ?? ""), completed: nil)
-        likesLabel.text = "Нравится: \(item.likes ?? 0)"
+        if isLiked == true {
+            likesLabel.text = "Нравится: \(item.likes! + 1)"
+        } else {
+            likesLabel.text = "Нравится: \(item.likes ?? 0)"
+        }
         descriptionLabel.text = item.alt_description ?? "Нет описания"
-        
-        
-      
     }
 }
-
