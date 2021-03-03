@@ -23,6 +23,8 @@ class FavoriteImagesVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        FavoriteManager.shared.update()
+        
         favoriteCollectionView.reloadData()
         
         if FavoriteManager.shared.images == [] {

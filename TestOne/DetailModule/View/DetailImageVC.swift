@@ -59,9 +59,10 @@ class DetailImageVC: UIViewController {
             
         } else {
             if !FavoriteManager.shared.images.isEmpty && presenter.image.id == id {
-                guard let index = FavoriteManager.shared.images.firstIndex(where: { $0.id == id }) else { return }
-                FavoriteManager.shared.images.remove(at: index)
-                FavoriteManager.shared.delete()
+                
+//                guard let index = FavoriteManager.shared.images.firstIndex(where: { $0.id == id }) else { return }
+//                FavoriteManager.shared.images.remove(at: index)
+                FavoriteManager.shared.delete(presenter: presenter, image: presenter.image)
                 likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"
             } else {
                 likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"

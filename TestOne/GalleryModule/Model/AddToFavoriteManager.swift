@@ -29,7 +29,6 @@ class AddToFavoriteManager {
         
         if dishesCopy.contains(id), let index = dishesCopy.firstIndex(of: id) {
             dishesCopy.remove(at: index)
-            FavoriteManager.shared.save(image: )
             added = false
         } else {
             dishesCopy.append(id)
