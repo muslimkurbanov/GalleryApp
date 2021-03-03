@@ -10,11 +10,10 @@ import UIKit
 
 //MARK: - Protocol
 protocol DetailPresenterProtocol: class {
-    init(view: DetailViewProtocol, images: Image, isLiked: Bool, cell: Int)
+    init(view: DetailViewProtocol, images: Image, isLiked: Bool)
     func setImages()
     var isLiked: Bool { get set }
-    var images: Image { get set }
-    var cell: Int { get set }
+    var image: Image { get set }
 }
 
 class DetailPresenter: DetailPresenterProtocol {
@@ -24,18 +23,17 @@ class DetailPresenter: DetailPresenterProtocol {
     private var searchResponce: [Image]? = nil
     
     var isLiked: Bool
-    var images: Image
-    var cell: Int
+    var image: Image
     
-    required init(view: DetailViewProtocol, images: Image, isLiked: Bool, cell: Int) {
+    required init(view: DetailViewProtocol, images: Image, isLiked: Bool) {
         self.view = view
-        self.images = images
+        self.image = images
         self.isLiked = isLiked
-        self.cell = cell
      }
     
     //MARK: - Functions
     func setImages() {
-        self.view?.setImages(item: images, isLiked: isLiked)
+        self.view?.setImages(item: image, isLiked: isLiked)
     }
+    
 }

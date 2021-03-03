@@ -13,13 +13,14 @@ struct Test {
     var image: UIImage?
 }
 
-struct Image: Decodable, Equatable {
-    var urls: [URLKing.RawValue:String]
+struct Image: Codable, Equatable {
+    var urls: [String:String]
     var description: String?
     var alt_description: String?
     var likes: Int?
     var id: String?
 }
+
 enum URLKing: String {
     case raw
     case full

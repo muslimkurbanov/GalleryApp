@@ -7,8 +7,8 @@
 
 import Foundation
 
-class FavoriteManager {
-    static let shared = FavoriteManager()
+class AddToFavoriteManager {
+    static let shared = AddToFavoriteManager()
     private init() {}
     
     private let defaults = UserDefaults.standard
@@ -29,6 +29,7 @@ class FavoriteManager {
         
         if dishesCopy.contains(id), let index = dishesCopy.firstIndex(of: id) {
             dishesCopy.remove(at: index)
+            FavoriteManager.shared.save(image: )
             added = false
         } else {
             dishesCopy.append(id)

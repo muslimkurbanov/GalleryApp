@@ -74,44 +74,6 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2642.0289855072465" y="77.678571428571431"/>
-        </scene>
-        <!-- -->
-        <scene sceneID="cel-uc-iAz">
-            <objects>
-                <viewController title=" " id="xGi-78-nx0" customClass="MainScreenVC" customModule="TestOne" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bRZ-Ot-IW6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTT-KM-fdg">
-                                <rect key="frame" x="54" y="555" width="307" height="83"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <state key="normal" title="Перейти к галерее">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="pushToGallery:" destination="xGi-78-nx0" eventType="touchUpInside" id="0Em-K7-YyL"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="DFh-Jx-aqx"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Главная" image="house" catalog="system" id="dhr-rB-uJ6"/>
-                    <navigationItem key="navigationItem" title=" " id="KX4-tc-1gl">
-                        <barButtonItem key="backBarButtonItem" title=" " id="1kS-z3-kjG"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ktd-XR-gEj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
             <point key="canvasLocation" x="935" y="78"/>
         </scene>
         <!--Сохраненное-->
@@ -183,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGn-AZ-lOR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1789.8550724637682" y="77.678571428571431"/>
+            <point key="canvasLocation" x="154" y="78"/>
         </scene>
         <!--Информация-->
         <scene sceneID="aFe-t7-r0e">
@@ -271,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTA-VO-s2P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3479.7101449275365" y="77.678571428571431"/>
+            <point key="canvasLocation" x="1693" y="78"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JtY-o0-i7z">
@@ -281,7 +243,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="chevron.left" catalog="system" backIndicatorTransitionMaskImage="chevron.left" id="xCp-vU-Qdm">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="labelColor"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="30"/>
                         </textAttributes>
@@ -293,7 +255,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w2h-cb-sfR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1838" y="-701"/>
+            <point key="canvasLocation" x="154" y="-656"/>
         </scene>
         <!--Галерея-->
         <scene sceneID="la1-uX-aym">
@@ -315,21 +277,20 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPV-cp-BCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="935" y="-701"/>
+            <point key="canvasLocation" x="935" y="-656"/>
         </scene>
     </scenes>
     <resources>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart" width="33" height="33"/>
-        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="newspaper" catalog="system" width="128" height="108"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

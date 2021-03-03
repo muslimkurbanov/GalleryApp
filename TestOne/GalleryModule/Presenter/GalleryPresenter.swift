@@ -32,7 +32,7 @@ class GalleryPresenter: GalleryPresenterProtocol {
         networkService.getImages(completion: { [weak self] result in
             
             guard let self = self else { return }
-
+            
             DispatchQueue.main.async {
                 
                 switch result {
@@ -49,6 +49,4 @@ class GalleryPresenter: GalleryPresenterProtocol {
             }
         })
     }
-    
-    
 }

@@ -8,12 +8,9 @@
 import UIKit
 import SDWebImage
 import AudioToolbox
+import AVFoundation
 
 //MARK: - Protocols
-protocol DetailViewDelegate: class {
-    func addToFavorite(cell: GalleryCVCell)
-}
-
 protocol DetailViewProtocol: class {
     func setImages(item: Image, isLiked: Bool)
 }
@@ -27,25 +24,17 @@ class DetailImageVC: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var addToFavorite: UIButton!
 
-    public var cartManager = FavoriteManager.shared
-    public var id: String!
+    private var cartManager = AddToFavoriteManager.shared
+    private var id: String!
+    private var activityViewController: UIActivityViewController? = nil
+    private var favoriteView: FavoriteImagesVC?
     
-    weak var delegate: DetailViewDelegate?
-    
-    var activityViewController: UIActivityViewController? = nil
     var presenter: DetailPresenterProtocol!
-    var favoriteView: FavoriteImagesVC?
-    
-    var isLiked: Bool = false {
-        didSet {
-            toggleImage()
-        }
-    }
+    var isLiked: Bool = false { didSet {toggleImage()} }
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         presenter.setImages()
         isLiked = presenter.isLiked
     }
@@ -62,30 +51,26 @@ class DetailImageVC: UIViewController {
         isLiked = change
         
         if isLiked {
-            let generator = UIImpactFeedbackGenerator(style: .light)
-            generator.impactOccurred()
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
             
-            let image = imageView.image
-            Test.shared.image = image
-            
-            let cell = GalleryCVCell()
-            self.delegate?.addToFavorite(cell: cell)
-            
-            FavoriteImages.shared.items.append(presenter.images)
-            likesLabel.text = "Нравится: \(presenter.images.likes! + 1)"
+            FavoriteManager.shared.save(image: presenter.image)
+            likesLabel.text = "Нравится: \(presenter.image.likes ?? 0 + 1)"
             
         } else {
-            
-            if FavoriteImages.shared.items != [] {
-                FavoriteImages.shared.items.removeLast()
-                likesLabel.text = "Нравится: \(presenter.images.likes ?? 0)"
+            if !FavoriteManager.shared.images.isEmpty && presenter.image.id == id {
+                guard let index = FavoriteManager.shared.images.firstIndex(where: { $0.id == id }) else { return }
+                FavoriteManager.shared.images.remove(at: index)
+                FavoriteManager.shared.delete()
+                likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"
             } else {
-                likesLabel.text = "Нравится: \(presenter.images.likes ?? 0)"
+                likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"
                 return
             }
         }
     }
     
+    //MARK: - Functions
     func toggleImage() {
         let imageName = isLiked ? "filHeart" : "heart"
         addToFavorite.setImage(UIImage(named: imageName), for: .normal)
@@ -99,11 +84,11 @@ extension DetailImageVC: DetailViewProtocol {
         self.id = item.id
         nameLabel.text = item.description ?? "Нет названия"
         imageView.sd_setImage(with: URL(string: item.urls["regular"] ?? ""), completed: nil)
+        descriptionLabel.text = item.alt_description ?? "Нет описания"
         if isLiked == true {
-            likesLabel.text = "Нравится: \(item.likes! + 1)"
+            likesLabel.text = "Нравится: \(item.likes ?? 0 + 1)"
         } else {
             likesLabel.text = "Нравится: \(item.likes ?? 0)"
         }
-        descriptionLabel.text = item.alt_description ?? "Нет описания"
     }
 }
