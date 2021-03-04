@@ -12,6 +12,7 @@ import UIKit
 protocol DetailPresenterProtocol: class {
     init(view: DetailViewProtocol, images: Image, isLiked: Bool)
     func setImages()
+    func addToFavorite(isLiked: Bool, id: String)
     var isLiked: Bool { get set }
     var image: Image { get set }
 }
@@ -22,8 +23,12 @@ class DetailPresenter: DetailPresenterProtocol {
     private var networkService: GalleryNetworkServiceProtocol = GalleryNetworkService()
     private var searchResponce: [Image]? = nil
     
-    var isLiked: Bool
     var image: Image
+    var isLiked: Bool {
+        didSet {
+            self.view?.toggleImage()
+        }
+    }
     
     required init(view: DetailViewProtocol, images: Image, isLiked: Bool) {
         self.view = view
@@ -36,10 +41,18 @@ class DetailPresenter: DetailPresenterProtocol {
         self.view?.setImages(item: image, isLiked: isLiked)
     }
     
-    func change() {
-        print("change")
-        self.view?.update()
+    func addToFavorite(isLiked: Bool, id: String) {
+        let change = AddToFavoriteManager.shared.selectFavorite(by: id)
+        self.isLiked = change
+        
+        if self.isLiked {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+            FavoriteManager.shared.save(image: image)
+        } else {
+            FavoriteManager.shared.delete(presenter: self, image: image)
+        }
+        self.view?.updateCountOfLikes()
     }
-    
     
 }

@@ -13,7 +13,8 @@ import AVFoundation
 //MARK: - Protocols
 protocol DetailViewProtocol: class {
     func setImages(item: Image, isLiked: Bool)
-    func update()
+    func updateCountOfLikes()
+    func toggleImage()
 }
 
 class DetailImageVC: UIViewController {
@@ -49,37 +50,24 @@ class DetailImageVC: UIViewController {
     }
     
     @IBAction func addToFavorite(_ sender: Any) {
-        update()
-    }
-    
-    //MARK: - Functions
-    func toggleImage() {
-        let imageName = isLiked ? "filHeart" : "heart"
-        addToFavorite.setImage(UIImage(named: imageName), for: .normal)
+        presenter.addToFavorite(isLiked: isLiked, id: id)
     }
 }
 
 //MARK: - DetailViewProtocol
 extension DetailImageVC: DetailViewProtocol {
-    func update() {
-        let change = cartManager.selectFavorite(by: id)
-        isLiked = change
     
-        if isLiked {
-            let generator = UINotificationFeedbackGenerator()
-            generator.notificationOccurred(.success)
-            FavoriteManager.shared.save(image: presenter.image)
+    func toggleImage() {
+        let imageName = presenter.isLiked ? "filHeart" : "heart"
+        addToFavorite.setImage(UIImage(named: imageName), for: .normal)
+    }
+    
+    func updateCountOfLikes() {
+        if presenter.isLiked {
             likesLabel.text = "Нравится: \((presenter.image.likes ?? 0) + 1)"
             
         } else {
-//            if !FavoriteManager.shared.images.isEmpty && presenter.image.id == id {
-                FavoriteManager.shared.delete(presenter: presenter, image: presenter.image)
-                likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"
-//            } else {
-//                print("-2")
-//                likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"
-//                return
-//            }
+            likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"
         }
     }
     
@@ -89,7 +77,7 @@ extension DetailImageVC: DetailViewProtocol {
         nameLabel.text = item.description ?? "Нет названия"
         imageView.sd_setImage(with: URL(string: item.urls["regular"] ?? ""), completed: nil)
         descriptionLabel.text = item.alt_description ?? "Нет описания"
-        if isLiked == true {
+        if presenter.isLiked == true {
             likesLabel.text = "Нравится: \((item.likes ?? 0) + 1)"
         } else {
             likesLabel.text = "Нравится: \(item.likes ?? 0)"
