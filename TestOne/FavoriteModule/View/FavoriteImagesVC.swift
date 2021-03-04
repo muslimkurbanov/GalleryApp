@@ -31,6 +31,7 @@ class FavoriteImagesVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         FavoriteManager.shared.update()
+        selectedImages.removeAll()
         favoriteCollectionView.reloadData()
         
         if FavoriteManager.shared.images == [] {
@@ -49,6 +50,7 @@ class FavoriteImagesVC: UIViewController {
             self.present(alertController, animated: true, completion: nil)
             
         } else {
+            
             self.activityViewController = UIActivityViewController(activityItems: selectedImages, applicationActivities: nil)
             activityViewController?.completionWithItemsHandler = { _, bool, _, _ in
                 if bool {
@@ -63,7 +65,6 @@ class FavoriteImagesVC: UIViewController {
         self.selectedImages.removeAll()
         self.favoriteCollectionView.selectItem(at: nil, animated: true, scrollPosition: [])
     }
-    
 }
 
 //MARK: - Delegate, DataSource

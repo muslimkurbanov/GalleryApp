@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		840CA92A25F115BA00DB79BC /* GalleryTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CA92925F115BA00DB79BC /* GalleryTabBar.swift */; };
 		8472365525E0F86600C8BA46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472365425E0F86600C8BA46 /* AppDelegate.swift */; };
 		8472365725E0F86600C8BA46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472365625E0F86600C8BA46 /* SceneDelegate.swift */; };
 		8472365925E0F86600C8BA46 /* GalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472365825E0F86600C8BA46 /* GalleryVC.swift */; };
@@ -30,7 +29,6 @@
 
 /* Begin PBXFileReference section */
 		7B9FE943698FE85C88690181 /* Pods-TestOne.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestOne.release.xcconfig"; path = "Target Support Files/Pods-TestOne/Pods-TestOne.release.xcconfig"; sourceTree = "<group>"; };
-		840CA92925F115BA00DB79BC /* GalleryTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryTabBar.swift; sourceTree = "<group>"; };
 		8472365125E0F86600C8BA46 /* TestOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8472365425E0F86600C8BA46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8472365625E0F86600C8BA46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 			children = (
 				84CBAFEF25E246A10010F2C9 /* FavoriteImagesVC.swift */,
 				84CBAFFB25E4F5EE0010F2C9 /* FavoriteCollectionViewCell.swift */,
-				840CA92925F115BA00DB79BC /* GalleryTabBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -341,7 +338,6 @@
 				8472365925E0F86600C8BA46 /* GalleryVC.swift in Sources */,
 				8472365525E0F86600C8BA46 /* AppDelegate.swift in Sources */,
 				8472365725E0F86600C8BA46 /* SceneDelegate.swift in Sources */,
-				840CA92A25F115BA00DB79BC /* GalleryTabBar.swift in Sources */,
 				84CBAFE025E115180010F2C9 /* DetailPresenter.swift in Sources */,
 				84CBAFFC25E4F5EE0010F2C9 /* FavoriteCollectionViewCell.swift in Sources */,
 				84CBAFF025E246A10010F2C9 /* FavoriteImagesVC.swift in Sources */,

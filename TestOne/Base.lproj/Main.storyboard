@@ -285,7 +285,7 @@
         <!--Галерея-->
         <scene sceneID="la1-uX-aym">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Fof-0L-p8D" customClass="GalleryTabBar" customModule="TestOne" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Fof-0L-p8D" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Галерея" id="ooM-JR-PdH">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="OCI-h1-h0r"/>
@@ -308,8 +308,8 @@
     <resources>
         <image name="checkmark" width="1417" height="1417"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
-        <image name="heart" width="33" height="33"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart" width="33" height="33"/>
         <image name="newspaper" catalog="system" width="128" height="108"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">

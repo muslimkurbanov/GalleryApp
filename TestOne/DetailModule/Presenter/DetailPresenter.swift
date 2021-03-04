@@ -19,6 +19,7 @@ protocol DetailPresenterProtocol: class {
 
 class DetailPresenter: DetailPresenterProtocol {
     
+    //MARK: - Variables
     private weak var view: DetailViewProtocol?
     private var networkService: GalleryNetworkServiceProtocol = GalleryNetworkService()
     private var searchResponce: [Image]? = nil

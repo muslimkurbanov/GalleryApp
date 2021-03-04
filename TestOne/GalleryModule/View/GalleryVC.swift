@@ -34,7 +34,7 @@ class GalleryVC: UIViewController {
     }
 }
 
-//MARK: - DataSource
+//MARK: - Delegare, DataSource
 extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.images.count

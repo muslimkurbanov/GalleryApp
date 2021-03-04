@@ -8,9 +8,10 @@
 import Foundation
 
 class AddToFavoriteManager {
-    static let shared = AddToFavoriteManager()
-    private init() {}
     
+    static let shared = AddToFavoriteManager()
+    
+    private init() {}
     private let defaults = UserDefaults.standard
     private let menuKey = "LIKE_PRODUCT"
     
@@ -19,6 +20,7 @@ class AddToFavoriteManager {
         return array ?? []
     }
     
+    //MARK: - Fuctions
     func isAddedToFavorite(_ id: String) -> Bool {
         return dishesIds.contains(id)
     }

@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-struct Test {
-    static var shared = Test()
-    var image: UIImage?
-}
-
 struct Image: Codable, Equatable {
     var urls: [String:String]
     var description: String?
