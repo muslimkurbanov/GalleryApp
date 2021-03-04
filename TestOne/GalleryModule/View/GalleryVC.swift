@@ -35,7 +35,7 @@ class GalleryVC: UIViewController {
 }
 
 //MARK: - DataSource
-extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegate {
+extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.images.count
     }
@@ -54,10 +54,16 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegate {
         let isLiked = cartManager.isAddedToFavorite(item.id ?? "")
         
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detail") as? DetailImageVC else { return }
-        
         let presenter = DetailPresenter(view: vc, images: item, isLiked: isLiked)
         vc.presenter = presenter
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let height = view.frame.size.height
+        let width = view.frame.size.width
+        return CGSize(width: width * 0.4, height: height * 0.4)
     }
 }
 

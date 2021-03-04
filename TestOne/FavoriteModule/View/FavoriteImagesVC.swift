@@ -12,7 +12,7 @@ class FavoriteImagesVC: UIViewController {
     //MARK: - IBOutlets
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
     @IBOutlet weak var emptyLabel: UILabel!
-    
+        
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,15 +36,13 @@ class FavoriteImagesVC: UIViewController {
 }
 
 //MARK: - Delegate, DataSource
-extension FavoriteImagesVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension FavoriteImagesVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return FavoriteImages.shared.items.count
         return FavoriteManager.shared.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favoriteCell", for: indexPath) as! FavoriteCollectionViewCell
-//        cell.configurate(image: FavoriteImages.shared.items[indexPath.row])
         cell.configurate(image: FavoriteManager.shared.images[indexPath.row])
         return cell
     }
@@ -54,5 +52,13 @@ extension FavoriteImagesVC: UICollectionViewDelegate, UICollectionViewDataSource
         //        let cell = collectionView.cellForItem(at: indexPath) as! FavoriteCollectionViewCell
         //        guard let image = cell.favoriteImageView.image else { return }
         //        selectedImages.append(image)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let height = view.frame.size.height
+        let width = view.frame.size.width
+        // in case you you want the cell to be 40% of your controllers view
+        return CGSize(width: width * 0.4, height: height * 0.4)
     }
 }

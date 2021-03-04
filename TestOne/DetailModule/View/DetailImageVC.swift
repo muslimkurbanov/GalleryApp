@@ -13,6 +13,7 @@ import AVFoundation
 //MARK: - Protocols
 protocol DetailViewProtocol: class {
     func setImages(item: Image, isLiked: Bool)
+    func update()
 }
 
 class DetailImageVC: UIViewController {
@@ -35,6 +36,7 @@ class DetailImageVC: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         presenter.setImages()
         isLiked = presenter.isLiked
     }
@@ -47,28 +49,7 @@ class DetailImageVC: UIViewController {
     }
     
     @IBAction func addToFavorite(_ sender: Any) {
-        let change = cartManager.selectFavorite(by: id)
-        isLiked = change
-        
-        if isLiked {
-            let generator = UINotificationFeedbackGenerator()
-            generator.notificationOccurred(.success)
-            
-            FavoriteManager.shared.save(image: presenter.image)
-            likesLabel.text = "Нравится: \(presenter.image.likes ?? 0 + 1)"
-            
-        } else {
-            if !FavoriteManager.shared.images.isEmpty && presenter.image.id == id {
-                
-//                guard let index = FavoriteManager.shared.images.firstIndex(where: { $0.id == id }) else { return }
-//                FavoriteManager.shared.images.remove(at: index)
-                FavoriteManager.shared.delete(presenter: presenter, image: presenter.image)
-                likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"
-            } else {
-                likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"
-                return
-            }
-        }
+        update()
     }
     
     //MARK: - Functions
@@ -80,14 +61,36 @@ class DetailImageVC: UIViewController {
 
 //MARK: - DetailViewProtocol
 extension DetailImageVC: DetailViewProtocol {
+    func update() {
+        let change = cartManager.selectFavorite(by: id)
+        isLiked = change
+    
+        if isLiked {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+            FavoriteManager.shared.save(image: presenter.image)
+            likesLabel.text = "Нравится: \((presenter.image.likes ?? 0) + 1)"
+            
+        } else {
+//            if !FavoriteManager.shared.images.isEmpty && presenter.image.id == id {
+                FavoriteManager.shared.delete(presenter: presenter, image: presenter.image)
+                likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"
+//            } else {
+//                print("-2")
+//                likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"
+//                return
+//            }
+        }
+    }
     
     func setImages(item: Image, isLiked: Bool) {
+        print("setImages")
         self.id = item.id
         nameLabel.text = item.description ?? "Нет названия"
         imageView.sd_setImage(with: URL(string: item.urls["regular"] ?? ""), completed: nil)
         descriptionLabel.text = item.alt_description ?? "Нет описания"
         if isLiked == true {
-            likesLabel.text = "Нравится: \(item.likes ?? 0 + 1)"
+            likesLabel.text = "Нравится: \((item.likes ?? 0) + 1)"
         } else {
             likesLabel.text = "Нравится: \(item.likes ?? 0)"
         }

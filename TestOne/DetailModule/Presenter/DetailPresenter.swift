@@ -36,4 +36,10 @@ class DetailPresenter: DetailPresenterProtocol {
         self.view?.setImages(item: image, isLiked: isLiked)
     }
     
+    func change() {
+        print("change")
+        self.view?.update()
+    }
+    
+    
 }

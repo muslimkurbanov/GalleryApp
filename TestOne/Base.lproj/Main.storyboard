@@ -145,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGn-AZ-lOR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="154" y="78"/>
+            <point key="canvasLocation" x="153.62318840579712" y="77.678571428571431"/>
         </scene>
         <!--Информация-->
         <scene sceneID="aFe-t7-r0e">
@@ -282,8 +282,8 @@
     </scenes>
     <resources>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
-        <image name="heart" width="33" height="33"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart" width="33" height="33"/>
         <image name="newspaper" catalog="system" width="128" height="108"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
