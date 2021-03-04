@@ -15,7 +15,7 @@ protocol GalleryViewProtocol: class {
 class GalleryVC: UIViewController {
     
     //MARK: IBOutlets
-    @IBOutlet weak var galleryCV: UICollectionView!
+    @IBOutlet weak var galleryCollectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private let cartManager = AddToFavoriteManager.shared
@@ -29,8 +29,8 @@ class GalleryVC: UIViewController {
         let presenter = GalleryPresenter(view: self)
         self.presenter = presenter
         
-        self.galleryCV.delegate = self
-        self.galleryCV.dataSource = self
+        self.galleryCollectionView.delegate = self
+        self.galleryCollectionView.dataSource = self
     }
 }
 
@@ -60,7 +60,7 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         let height = view.frame.size.height
         let width = view.frame.size.width
         return CGSize(width: width * 0.4, height: height * 0.4)
@@ -72,7 +72,7 @@ extension GalleryVC: GalleryViewProtocol {
     
     func success() {
         activityIndicator.stopAnimating()
-        galleryCV.reloadData()
+        galleryCollectionView.reloadData()
     }
     
     func failure(error: Error) {

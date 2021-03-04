@@ -19,7 +19,7 @@ class GalleryPresenter: GalleryPresenterProtocol {
     private weak var view: GalleryViewProtocol?
     private var networkService: GalleryNetworkServiceProtocol = GalleryNetworkService()
     private var searchResponce: [Image]? = nil
-
+    
     var images: [Image] = []
     
     required init(view: GalleryViewProtocol) {

@@ -7,8 +7,6 @@
 
 import UIKit
 import SDWebImage
-import AudioToolbox
-import AVFoundation
 
 //MARK: - Protocols
 protocol DetailViewProtocol: class {
@@ -25,7 +23,7 @@ class DetailImageVC: UIViewController {
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var addToFavorite: UIButton!
-
+    
     private var cartManager = AddToFavoriteManager.shared
     private var id: String!
     private var activityViewController: UIActivityViewController? = nil
@@ -65,14 +63,12 @@ extension DetailImageVC: DetailViewProtocol {
     func updateCountOfLikes() {
         if presenter.isLiked {
             likesLabel.text = "Нравится: \((presenter.image.likes ?? 0) + 1)"
-            
         } else {
             likesLabel.text = "Нравится: \(presenter.image.likes ?? 0)"
         }
     }
     
     func setImages(item: Image, isLiked: Bool) {
-        print("setImages")
         self.id = item.id
         nameLabel.text = item.description ?? "Нет названия"
         imageView.sd_setImage(with: URL(string: item.urls["regular"] ?? ""), completed: nil)

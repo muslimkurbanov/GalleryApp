@@ -16,7 +16,7 @@ final class FavoriteManager {
     
     var images: [Image] = []
     private var id: String!
-
+    
     private init() {
         guard let array = defaults.object(forKey: menuKey) as? Data,
               let images = try? JSONDecoder().decode([Image].self, from: array) else { return }
@@ -24,7 +24,7 @@ final class FavoriteManager {
     }
     
     func save(image: Image) {
-
+        
         if !images.contains(where: {$0.id == image.id}) {
             images.append(image)
         }
@@ -59,10 +59,9 @@ final class FavoriteManager {
                     defaults.setValue(data, forKey: menuKey)
                 }
                 images.append(presenter.image)
-        } else {
-            print("Failed to save images from delete")
+            } else {
+                print("Failed to save images from delete")
+            }
         }
-    }
-    
     }
 }
