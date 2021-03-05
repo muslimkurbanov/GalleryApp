@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-TestOne/Pods-TestOne-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework

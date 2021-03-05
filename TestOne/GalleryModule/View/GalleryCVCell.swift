@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import SkeletonView
 
 class GalleryCVCell: UICollectionViewCell {
     
@@ -15,6 +16,13 @@ class GalleryCVCell: UICollectionViewCell {
     
     //MARK: - Functions
     func configurate(model: Image) {
-        imageView.sd_setImage(with: URL(string: model.urls["thumb"] ?? ""), completed: nil)
+        imageView.isSkeletonable = true
+        imageView.showAnimatedSkeleton()
+        imageView.sd_imageTransition = .fade
+//        imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        imageView.sd_setImage(with: URL(string: model.urls["thumb"] ?? ""), completed: {_,_,_,_ in
+            self.imageView.stopSkeletonAnimation()
+            self.imageView.hideSkeleton()
+        })
     }
 }

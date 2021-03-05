@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import SkeletonView
 
 class FavoriteCollectionViewCell: UICollectionViewCell {
     
@@ -27,6 +28,16 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     }
     
     func configurate(image: Image) {
-        favoriteImageView.sd_setImage(with: URL(string: image.urls["small"] ?? ""), completed: nil)
+        favoriteImageView.isSkeletonable = true
+        
+        favoriteImageView.sd_imageTransition = .fade
+        favoriteImageView.isSkeletonable = true
+        favoriteImageView.showAnimatedSkeleton()
+        //        favoriteImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        favoriteImageView.sd_setImage(with: URL(string: image.urls["small"] ?? ""), completed: {_,_,_,_ in
+            self.favoriteImageView.stopSkeletonAnimation()
+            self.favoriteImageView.hideSkeleton()
+        })
+        
     }
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import SkeletonView
 
 //MARK: - Protocols
 protocol DetailViewProtocol: class {
@@ -71,7 +72,16 @@ extension DetailImageVC: DetailViewProtocol {
     func setImages(item: Image, isLiked: Bool) {
         self.id = item.id
         nameLabel.text = item.description ?? "Нет названия"
-        imageView.sd_setImage(with: URL(string: item.urls["regular"] ?? ""), completed: nil)
+        imageView.sd_imageTransition = .fade
+//        imageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+        imageView.isSkeletonable = true
+        imageView.showAnimatedSkeleton()
+//        imageView.startSkeletonAnimation()
+
+        imageView.sd_setImage(with: URL(string: item.urls["regular"] ?? ""), completed: {_,_,_,_ in
+            self.imageView.stopSkeletonAnimation()
+            self.imageView.hideSkeleton()
+        })
         descriptionLabel.text = item.alt_description ?? "Нет описания"
         if presenter.isLiked == true {
             likesLabel.text = "Нравится: \((item.likes ?? 0) + 1)"
