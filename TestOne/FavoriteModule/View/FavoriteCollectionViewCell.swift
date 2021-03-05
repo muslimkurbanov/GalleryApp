@@ -34,7 +34,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         favoriteImageView.isSkeletonable = true
         favoriteImageView.showAnimatedSkeleton()
         //        favoriteImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        favoriteImageView.sd_setImage(with: URL(string: image.urls["small"] ?? ""), completed: {_,_,_,_ in
+        favoriteImageView.sd_setImage(with: URL(string: image.urls["regular"] ?? ""), completed: {_,_,_,_ in
             self.favoriteImageView.stopSkeletonAnimation()
             self.favoriteImageView.hideSkeleton()
         })

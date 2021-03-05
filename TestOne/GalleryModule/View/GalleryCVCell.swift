@@ -20,7 +20,7 @@ class GalleryCVCell: UICollectionViewCell {
         imageView.showAnimatedSkeleton()
         imageView.sd_imageTransition = .fade
 //        imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        imageView.sd_setImage(with: URL(string: model.urls["thumb"] ?? ""), completed: {_,_,_,_ in
+        imageView.sd_setImage(with: URL(string: model.urls["regular"] ?? ""), completed: {_,_,_,_ in
             self.imageView.stopSkeletonAnimation()
             self.imageView.hideSkeleton()
         })

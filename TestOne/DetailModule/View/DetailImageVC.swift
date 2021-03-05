@@ -25,6 +25,8 @@ class DetailImageVC: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var addToFavorite: UIButton!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     private var cartManager = AddToFavoriteManager.shared
     private var id: String!
     private var activityViewController: UIActivityViewController? = nil
@@ -37,6 +39,11 @@ class DetailImageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        scrollView.showsVerticalScrollIndicator = true
+
+        scrollView.contentSize = CGSize(width: 375, height: 1000)
+
         presenter.setImages()
         isLiked = presenter.isLiked
     }
