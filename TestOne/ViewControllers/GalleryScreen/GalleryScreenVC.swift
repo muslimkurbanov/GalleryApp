@@ -62,9 +62,11 @@ extension GalleryScreenVC: UICollectionViewDelegateFlowLayout {
         let item = presenter.images[indexPath.row]
         let isLiked = addToFavoriteManager.isAddedToFavorite(item.id ?? "")
         
-        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detail") as? ImageDetailScreenVC else { return }
+        guard let vc = UIStoryboard(name: "ImageDetailScreen", bundle: nil).instantiateInitialViewController() as? ImageDetailScreenVC else { return }
+        
         let presenter = ImageDetailScreenPresenter(view: vc, images: item, isLiked: isLiked)
         vc.presenter = presenter
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     
