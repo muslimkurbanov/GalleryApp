@@ -1,5 +1,5 @@
 //
-//  FavoriteCollectionViewCell.swift
+//  FavoriteImageCell.swift
 //  TestOne
 //
 //  Created by Муслим Курбанов on 23.02.2021.
@@ -9,9 +9,10 @@ import UIKit
 import SDWebImage
 import SkeletonView
 
-class FavoriteCollectionViewCell: UICollectionViewCell {
+final class FavoriteImageCell: UICollectionViewCell {
     
     //MARK: - IBOutlets
+    
     @IBOutlet weak var favoriteImageView: UIImageView!
     @IBOutlet weak var checkmark: UIImageView!
     
@@ -22,6 +23,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Functions
+    
     private func updateSelectedState() {
         favoriteImageView.alpha = isSelected ? 0.7 : 1
         checkmark.alpha = isSelected ? 1 : 0

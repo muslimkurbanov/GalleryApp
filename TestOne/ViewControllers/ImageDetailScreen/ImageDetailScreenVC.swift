@@ -1,5 +1,5 @@
 //
-//  DetailImageVC.swift
+//  ImageDetailScreenVC.swift
 //  TestOne
 //
 //  Created by Муслим Курбанов on 20.02.2021.
@@ -9,18 +9,17 @@ import UIKit
 import SDWebImage
 import SkeletonView
 
-//MARK: - Protocols
 protocol DetailViewProtocol: AnyObject {
     func setImages(item: Image, isLiked: Bool)
     func updateCountOfLikes()
     func toggleImage()
 }
 
-class DetailImageVC: UIViewController {
+final class ImageDetailScreenVC: UIViewController {
     
-    //MARK: - IBOutlet
+    //MARK: - IBOutlets
+    
     @IBOutlet private weak var scrollView: UIScrollView!
-    
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var likesLabel: UILabel!
@@ -28,39 +27,47 @@ class DetailImageVC: UIViewController {
     @IBOutlet private weak var addToFavorite: UIButton!
     
     //MARK: - Properties
+    
     private var cartManager = AddToFavoriteManager.shared
     private var id: String!
     private var activityViewController: UIActivityViewController? = nil
-    private var favoriteView: FavoriteImagesVC?
+    private var favoriteView: FavoriteScreenVC?
     
     var presenter: DetailPresenterProtocol!
     var isLiked: Bool = false { didSet {toggleImage()} }
     
     //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.showsVerticalScrollIndicator = true
         scrollView.contentSize = CGSize(width: 375, height: 1000)
 
-        presenter.setImages()
         isLiked = presenter.isLiked
+        presenter.setImages()
     }
     
     //MARK: - IBActions
+    
     @IBAction private func shareImage(_ sender: Any) {
+        
         let image = self.imageView.image
-        self.activityViewController = UIActivityViewController(activityItems: [image ?? []], applicationActivities: nil)
+        self.activityViewController = UIActivityViewController(activityItems: [image ?? []],
+                                                               applicationActivities: nil)
+        
         self.present(self.activityViewController!, animated: true, completion: nil)
     }
     
     @IBAction private func addToFavorite(_ sender: Any) {
+        
         presenter.addToFavorite(isLiked: isLiked, id: id)
     }
 }
 
 //MARK: - DetailViewProtocol
-extension DetailImageVC: DetailViewProtocol {
+
+extension ImageDetailScreenVC: DetailViewProtocol {
     
     func toggleImage() {
         let imageName = presenter.isLiked ? "filHeart" : "heart"

@@ -1,5 +1,5 @@
 //
-//  MainPresenter.swift
+//  GalleryScreenPresenter.swift
 //  TestOne
 //
 //  Created by Муслим Курбанов on 20.02.2021.
@@ -7,14 +7,16 @@
 
 import Foundation
 
-//MARK: - Protocol
 protocol GalleryPresenterProtocol: AnyObject {
+    
     init(view: GalleryViewProtocol)
     var images: [Image] { get set }
     func getImages()
 }
 
-class GalleryPresenter: GalleryPresenterProtocol {
+final class GalleryScreenPresenter {
+    
+    //MARK: - Properties
     
     private weak var view: GalleryViewProtocol?
     private var networkService: GalleryNetworkServiceProtocol = GalleryNetworkService()
@@ -22,13 +24,20 @@ class GalleryPresenter: GalleryPresenterProtocol {
     
     var images: [Image] = []
     
+    //MARK: - Init
+    
     required init(view: GalleryViewProtocol) {
         self.view = view
         self.getImages()
     }
+}
+
+//MARK: - GalleryPresenterProtocol
+
+extension GalleryScreenPresenter: GalleryPresenterProtocol {
     
-    //MARK: - Functions
     func getImages() {
+        
         networkService.getImages(view: view, completion: { [weak self] result in
             
             guard let self = self else { return }
@@ -37,6 +46,7 @@ class GalleryPresenter: GalleryPresenterProtocol {
                 
                 switch result {
                 case .success(let searchResponce):
+                    
                     self.searchResponce = searchResponce
                     guard let images = searchResponce else { return }
                     

@@ -7,11 +7,12 @@
 
 import Foundation
 
-class AddToFavoriteManager {
+final class AddToFavoriteManager {
     
     static let shared = AddToFavoriteManager()
     
-    private init() {}
+    //MARK: - Properties
+    
     private let defaults = UserDefaults.standard
     private let menuKey = "LIKE_PRODUCT"
     
@@ -21,6 +22,7 @@ class AddToFavoriteManager {
     }
     
     //MARK: - Fuctions
+    
     func isAddedToFavorite(_ id: String) -> Bool {
         return dishesIds.contains(id)
     }

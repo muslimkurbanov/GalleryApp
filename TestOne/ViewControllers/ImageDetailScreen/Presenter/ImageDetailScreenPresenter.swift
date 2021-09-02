@@ -1,15 +1,14 @@
 //
-//  DetailPresenter.swift
+//  ImageDetailScreenPresenter.swift
 //  TestOne
 //
 //  Created by Муслим Курбанов on 20.02.2021.
 //
 
 import Foundation
-import UIKit
 
-//MARK: - Protocol
 protocol DetailPresenterProtocol: AnyObject {
+    
     init(view: DetailViewProtocol, images: Image, isLiked: Bool)
     
     func setImages()
@@ -19,9 +18,10 @@ protocol DetailPresenterProtocol: AnyObject {
     var image: Image { get set }
 }
 
-class DetailPresenter: DetailPresenterProtocol {
+final class ImageDetailScreenPresenter {
     
     //MARK: - Properties
+    
     private weak var view: DetailViewProtocol?
     private var networkService: GalleryNetworkServiceProtocol = GalleryNetworkService()
     private var searchResponce: [Image]? = nil
@@ -33,24 +33,30 @@ class DetailPresenter: DetailPresenterProtocol {
         }
     }
     
+    //MARK: - Init
+    
     required init(view: DetailViewProtocol, images: Image, isLiked: Bool) {
         self.view = view
         self.image = images
         self.isLiked = isLiked
     }
+}
+
+//MARK: - DetailPresenterProtocol
+
+extension ImageDetailScreenPresenter: DetailPresenterProtocol {
     
-    //MARK: - Functions
     func setImages() {
+        
         self.view?.setImages(item: image, isLiked: isLiked)
     }
     
     func addToFavorite(isLiked: Bool, id: String) {
+        
         let change = AddToFavoriteManager.shared.selectFavorite(by: id)
         self.isLiked = change
         
         if self.isLiked {
-            let generator = UINotificationFeedbackGenerator()
-            generator.notificationOccurred(.success)
             FavoriteManager.shared.save(image: image)
         } else {
             FavoriteManager.shared.delete(presenter: self, image: image)

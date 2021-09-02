@@ -1,5 +1,5 @@
 //
-//  MainCVCell.swift
+//  GalleryImageCell.swift
 //  TestOne
 //
 //  Created by Муслим Курбанов on 20.02.2021.
@@ -9,13 +9,14 @@ import UIKit
 import SDWebImage
 import SkeletonView
 
-class GalleryCVCell: UICollectionViewCell {
+final class GalleryImageCell: UICollectionViewCell {
     
     //MARK: - IBOutlets
-    @IBOutlet weak var imageView: UIImageView!
     
-    //MARK: - Functions
+    @IBOutlet private weak var imageView: UIImageView!
+    
     func configurate(model: Image) {
+        
         imageView.isSkeletonable = true
         imageView.showAnimatedSkeleton()
         imageView.sd_imageTransition = .fade

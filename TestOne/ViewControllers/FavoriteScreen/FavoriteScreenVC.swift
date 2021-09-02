@@ -1,5 +1,5 @@
 //
-//  FavoriteImagesVC.swift
+//  FavoriteScreenVC.swift
 //  TestOne
 //
 //  Created by Муслим Курбанов on 21.02.2021.
@@ -7,17 +7,20 @@
 
 import UIKit
 
-class FavoriteImagesVC: UIViewController {
+final class FavoriteScreenVC: UIViewController {
     
     //MARK: - IBOutlets
-    @IBOutlet weak var favoriteCollectionView: UICollectionView!
-    @IBOutlet weak var emptyLabel: UILabel!
+    
+    @IBOutlet private weak var favoriteCollectionView: UICollectionView!
+    @IBOutlet private weak var emptyLabel: UILabel!
 
     //MARK: - Properties
+    
     private var activityViewController: UIActivityViewController? = nil
     private var selectedImages = [UIImage]()
     
     //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,8 +43,16 @@ class FavoriteImagesVC: UIViewController {
         }
     }
     
+    //MARK: - Private funcs
+    
+    private func refresh() {
+        self.selectedImages.removeAll()
+        self.favoriteCollectionView.selectItem(at: nil, animated: true, scrollPosition: [])
+    }
+    
     //MARK: - IBActions
-    @IBAction func shareButton(_ sender: Any) {
+    
+    @IBAction private func shareButton(_ sender: Any) {
         
         if selectedImages.isEmpty {
             let alertController = UIAlertController(title: nil, message: "Изображения не выбраны", preferredStyle: .alert)
@@ -59,36 +70,39 @@ class FavoriteImagesVC: UIViewController {
             self.present(self.activityViewController!, animated: true, completion: nil)
         }
     }
-    
-    //MARK: - Private funcs
-    private func refresh() {
-        self.selectedImages.removeAll()
-        self.favoriteCollectionView.selectItem(at: nil, animated: true, scrollPosition: [])
-    }
 }
 
-//MARK: - Delegate, DataSource
-extension FavoriteImagesVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+//MARK: - UICollectionViewDataSource
+extension FavoriteScreenVC: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return FavoriteManager.shared.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favoriteCell", for: indexPath) as! FavoriteCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favoriteCell", for: indexPath) as! FavoriteImageCell
         cell.configurate(image: FavoriteManager.shared.images[indexPath.row])
         cell.contentView.isUserInteractionEnabled = false
         return cell
     }
+}
+
+//MARK: - UICollectionViewDelegateFlowLayout
+
+extension FavoriteScreenVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! FavoriteCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! FavoriteImageCell
+        
         guard let image = cell.favoriteImageView.image else { return }
         selectedImages.append(image)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! FavoriteCollectionViewCell
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! FavoriteImageCell
         guard let image = cell.favoriteImageView.image else { return }
+        
         if let index = selectedImages.firstIndex(of: image) {
             selectedImages.remove(at: index)
         }

@@ -1,12 +1,11 @@
 //
-//  MainModel.swift
+//  GalleryScreenModel.swift
 //  TestOne
 //
 //  Created by Муслим Курбанов on 20.02.2021.
 //
 
 import Foundation
-import UIKit
 
 struct Image: Codable, Equatable {
     var urls: [String:String]

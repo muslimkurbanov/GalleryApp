@@ -12,7 +12,7 @@
         <!--Галерея-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="galleryVC" id="BYZ-38-t0r" customClass="GalleryVC" customModule="TestOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="galleryVC" id="BYZ-38-t0r" customClass="GalleryScreenVC" customModule="TestOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,10 +31,10 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </activityIndicatorView>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="galleryCell" id="WWs-Hx-tu0" customClass="GalleryCVCell" customModule="TestOne" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="galleryCell" id="WWs-Hx-tu0" customClass="GalleryImageCell" customModule="TestOne" customModuleProvider="target">
                                         <rect key="frame" x="22" y="20" width="180" height="242"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iGs-Di-NCX" customClass="GalleryCVCell" customModule="TestOne" customModuleProvider="target">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iGs-Di-NCX" customClass="GalleryImageCell" customModule="TestOne" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="180" height="242"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -82,7 +82,7 @@
         <!--Сохраненное-->
         <scene sceneID="5YS-5Q-czb">
             <objects>
-                <viewController storyboardIdentifier="favoriteVC" id="0aa-PU-6hL" customClass="FavoriteImagesVC" customModule="TestOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favoriteVC" id="0aa-PU-6hL" customClass="FavoriteScreenVC" customModule="TestOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QLh-dc-gE2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,7 +104,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="favoriteCell" id="jmP-qV-czh" customClass="FavoriteCollectionViewCell" customModule="TestOne" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="favoriteCell" id="jmP-qV-czh" customClass="FavoriteImageCell" customModule="TestOne" customModuleProvider="target">
                                         <rect key="frame" x="22" y="20" width="180" height="242"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5RK-hN-mHL">
@@ -168,20 +168,10 @@
             </objects>
             <point key="canvasLocation" x="1057.9710144927537" y="77.678571428571431"/>
         </scene>
-        <!--ProfileScreen-->
-        <scene sceneID="qDh-23-Z7C">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ProfileScreen" id="9z5-AY-JKE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4Rz-lr-X3b"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FCW-aa-Uc1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1658" y="64"/>
-        </scene>
         <!--Информация-->
         <scene sceneID="aFe-t7-r0e">
             <objects>
-                <viewController storyboardIdentifier="detail" id="2rb-Ys-pPz" customClass="DetailImageVC" customModule="TestOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detail" id="2rb-Ys-pPz" customClass="ImageDetailScreenVC" customModule="TestOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EGf-qO-E6a">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -345,7 +335,6 @@
                     <connections>
                         <segue destination="x2C-cE-jRU" kind="relationship" relationship="viewControllers" id="v9S-MB-YHO"/>
                         <segue destination="SZf-xF-0Uf" kind="relationship" relationship="viewControllers" id="BvY-Zj-Mh2"/>
-                        <segue destination="9z5-AY-JKE" kind="relationship" relationship="viewControllers" id="r1W-Yt-ghe"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPV-cp-BCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
