@@ -9,14 +9,13 @@ import UIKit
 
 class FavoriteImagesVC: UIViewController {
     
-    static var shared = FavoriteImagesVC()
-    
     //MARK: - IBOutlets
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
     @IBOutlet weak var emptyLabel: UILabel!
 
+    //MARK: - Properties
     private var activityViewController: UIActivityViewController? = nil
-    var selectedImages = [UIImage]()
+    private var selectedImages = [UIImage]()
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -61,7 +60,8 @@ class FavoriteImagesVC: UIViewController {
         }
     }
     
-    func refresh() {
+    //MARK: - Private funcs
+    private func refresh() {
         self.selectedImages.removeAll()
         self.favoriteCollectionView.selectItem(at: nil, animated: true, scrollPosition: [])
     }
@@ -84,7 +84,6 @@ extension FavoriteImagesVC: UICollectionViewDelegateFlowLayout, UICollectionView
         let cell = collectionView.cellForItem(at: indexPath) as! FavoriteCollectionViewCell
         guard let image = cell.favoriteImageView.image else { return }
         selectedImages.append(image)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -99,6 +98,6 @@ extension FavoriteImagesVC: UICollectionViewDelegateFlowLayout, UICollectionView
         
         let height = view.frame.size.height
         let width = view.frame.size.width
-        return CGSize(width: width * 0.4, height: height * 0.4)
+        return CGSize(width: width * 0.4, height: height * 0.3)
     }
 }

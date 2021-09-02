@@ -10,7 +10,7 @@ import SDWebImage
 import SkeletonView
 
 //MARK: - Protocols
-protocol DetailViewProtocol: class {
+protocol DetailViewProtocol: AnyObject {
     func setImages(item: Image, isLiked: Bool)
     func updateCountOfLikes()
     func toggleImage()
@@ -19,14 +19,15 @@ protocol DetailViewProtocol: class {
 class DetailImageVC: UIViewController {
     
     //MARK: - IBOutlet
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var likesLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var addToFavorite: UIButton!
+    @IBOutlet private weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var likesLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var addToFavorite: UIButton!
     
+    //MARK: - Properties
     private var cartManager = AddToFavoriteManager.shared
     private var id: String!
     private var activityViewController: UIActivityViewController? = nil
@@ -39,9 +40,7 @@ class DetailImageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         scrollView.showsVerticalScrollIndicator = true
-
         scrollView.contentSize = CGSize(width: 375, height: 1000)
 
         presenter.setImages()
@@ -49,13 +48,13 @@ class DetailImageVC: UIViewController {
     }
     
     //MARK: - IBActions
-    @IBAction func shareImage(_ sender: Any) {
+    @IBAction private func shareImage(_ sender: Any) {
         let image = self.imageView.image
         self.activityViewController = UIActivityViewController(activityItems: [image ?? []], applicationActivities: nil)
         self.present(self.activityViewController!, animated: true, completion: nil)
     }
     
-    @IBAction func addToFavorite(_ sender: Any) {
+    @IBAction private func addToFavorite(_ sender: Any) {
         presenter.addToFavorite(isLiked: isLiked, id: id)
     }
 }
@@ -65,7 +64,7 @@ extension DetailImageVC: DetailViewProtocol {
     
     func toggleImage() {
         let imageName = presenter.isLiked ? "filHeart" : "heart"
-        addToFavorite.setImage(UIImage(named: imageName), for: .normal)
+        addToFavorite.setBackgroundImage(UIImage(named: imageName), for: .normal)
     }
     
     func updateCountOfLikes() {
@@ -83,6 +82,7 @@ extension DetailImageVC: DetailViewProtocol {
 //        imageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
         imageView.isSkeletonable = true
         imageView.showAnimatedSkeleton()
+        imageView.isUserInteractionEnabled = true
 //        imageView.startSkeletonAnimation()
 
         imageView.sd_setImage(with: URL(string: item.urls["regular"] ?? ""), completed: {_,_,_,_ in

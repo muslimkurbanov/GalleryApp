@@ -9,17 +9,18 @@ import Foundation
 import Alamofire
 
 protocol GalleryNetworkServiceProtocol {
-    func getImages(completion: @escaping (Result<[Image]?, Error>) -> Void)
+    func getImages(view: GalleryViewProtocol?, completion: @escaping (Result<[Image]?, Error>) -> Void)
 }
 
 class GalleryNetworkService: GalleryNetworkServiceProtocol {
-    func getImages(completion: @escaping (Result<[Image]?, Error>) -> Void) {
+    func getImages(view: GalleryViewProtocol?, completion: @escaping (Result<[Image]?, Error>) -> Void) {
         let urlString = "https://api.unsplash.com/photos/?client_id=F8HtKWZy9TjdMlE8v_Zuh1xKJF3x-5jvL3f7tnECdJE"
         
         AF.request(urlString, method: .get, parameters: nil).responseJSON { (responce) in
             switch responce.result {
             case .failure(let error):
                 print(error)
+                view?.failure(error: error)
             case .success(let value):
                 if let arrayDictionary = value as? [[String: Any]] {
                     do {

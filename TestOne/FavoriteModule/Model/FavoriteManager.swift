@@ -14,8 +14,8 @@ final class FavoriteManager {
     private let defaults = UserDefaults.standard
     let menuKey = "ADDED_PRODUCT"
     
-    var images: [Image] = []
     private var id: String!
+    var images: [Image] = []
     
     private init() {
         guard let array = defaults.object(forKey: menuKey) as? Data,
@@ -34,18 +34,6 @@ final class FavoriteManager {
         }
     }
     
-    func update() {
-        let defaults = UserDefaults.standard
-        if let savedImages = defaults.object(forKey: menuKey) as? Data {
-            let jsonDecoder = JSONDecoder()
-            do {
-                images = try jsonDecoder.decode([Image].self, from: savedImages)
-            } catch {
-                print("Failed to load images from update")
-            }
-        }
-    }
-    
     func delete(presenter: DetailPresenterProtocol, image: Image) {
         let jsonEncoder = JSONEncoder()
         if let savedData = try? jsonEncoder.encode(images) {
@@ -61,6 +49,18 @@ final class FavoriteManager {
                 images.append(presenter.image)
             } else {
                 print("Failed to save images from delete")
+            }
+        }
+    }
+    
+    func update() {
+        let defaults = UserDefaults.standard
+        if let savedImages = defaults.object(forKey: menuKey) as? Data {
+            let jsonDecoder = JSONDecoder()
+            do {
+                images = try jsonDecoder.decode([Image].self, from: savedImages)
+            } catch {
+                print("Failed to load images from update")
             }
         }
     }

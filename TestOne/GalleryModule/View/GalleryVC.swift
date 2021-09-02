@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol GalleryViewProtocol: class {
+protocol GalleryViewProtocol: AnyObject {
     func success()
     func failure(error: Error)
 }
@@ -63,7 +63,7 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
         
         let height = view.frame.size.height
         let width = view.frame.size.width
-        return CGSize(width: width * 0.4, height: height * 0.4)
+        return CGSize(width: width * 0.4, height: height * 0.3)
     }
 }
 
@@ -76,6 +76,8 @@ extension GalleryVC: GalleryViewProtocol {
     }
     
     func failure(error: Error) {
-        print(error)
+        
+        //TODO: - Вернуть алерт
+//        showAlert(title: "Произошла ошибка", message: error.localizedDescription)
     }
 }

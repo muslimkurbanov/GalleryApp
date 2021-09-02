@@ -9,17 +9,19 @@ import Foundation
 import UIKit
 
 //MARK: - Protocol
-protocol DetailPresenterProtocol: class {
+protocol DetailPresenterProtocol: AnyObject {
     init(view: DetailViewProtocol, images: Image, isLiked: Bool)
+    
     func setImages()
     func addToFavorite(isLiked: Bool, id: String)
+    
     var isLiked: Bool { get set }
     var image: Image { get set }
 }
 
 class DetailPresenter: DetailPresenterProtocol {
     
-    //MARK: - Variables
+    //MARK: - Properties
     private weak var view: DetailViewProtocol?
     private var networkService: GalleryNetworkServiceProtocol = GalleryNetworkService()
     private var searchResponce: [Image]? = nil
@@ -35,7 +37,7 @@ class DetailPresenter: DetailPresenterProtocol {
         self.view = view
         self.image = images
         self.isLiked = isLiked
-     }
+    }
     
     //MARK: - Functions
     func setImages() {
@@ -55,5 +57,4 @@ class DetailPresenter: DetailPresenterProtocol {
         }
         self.view?.updateCountOfLikes()
     }
-    
 }
