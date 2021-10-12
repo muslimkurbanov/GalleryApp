@@ -10,10 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Сохраненное-->
+        <!--Избранное-->
         <scene sceneID="LYH-1B-B5W">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OdQ-6G-LIh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="favoriteVC" id="BTJ-s7-0oU" customClass="FavoriteScreenVC" customModule="TestOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vs7-AD-rmS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -28,10 +27,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="22" minY="20" maxX="22" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <label key="backgroundView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нет сохраненных изображений" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hMy-JG-1ZI">
+                                <label key="backgroundView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нет сохраненных изображений" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hMy-JG-1ZI">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="30"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -89,7 +88,12 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Сохраненное" image="heart" catalog="system" id="lB0-PU-exM"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Сохраненное" id="Thc-yk-LC9">
+                    <navigationItem key="navigationItem" title="Избранное" id="Thc-yk-LC9">
+                        <barButtonItem key="leftBarButtonItem" image="trash" catalog="system" id="eIk-h3-6Wa">
+                            <connections>
+                                <action selector="deleteImagesDidTap:" destination="BTJ-s7-0oU" id="gLP-9w-6iC"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="7NY-0D-dYY">
                             <connections>
                                 <action selector="shareButton:" destination="BTJ-s7-0oU" id="GDN-aa-1k5"/>
@@ -98,17 +102,17 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="collectionView" destination="tXa-VO-XVC" id="otR-GQ-suk"/>
                         <outlet property="emptyLabel" destination="hMy-JG-1ZI" id="S8j-ca-jdz"/>
-                        <outlet property="favoriteCollectionView" destination="tXa-VO-XVC" id="otR-GQ-suk"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OdQ-6G-LIh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1199" y="-305"/>
         </scene>
         <!--Избранное-->
         <scene sceneID="4Nu-Yc-PJF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W9m-YM-GnD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hLT-ps-hI8" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Избранное" image="heart" catalog="system" id="xOn-WJ-mUP"/>
                     <toolbarItems/>
@@ -117,7 +121,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" systemColor="labelColor"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="30"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -125,6 +129,7 @@
                         <segue destination="BTJ-s7-0oU" kind="relationship" relationship="rootViewController" id="kgF-fL-ZC0"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W9m-YM-GnD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="316" y="-305"/>
         </scene>
@@ -13394,6 +13399,7 @@ ggAMIYoAAAAAAAAEAQAAAAAAAABWAAAAAAAAAAAAAAAAAAwhjQ
 </mutableData>
         </image>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

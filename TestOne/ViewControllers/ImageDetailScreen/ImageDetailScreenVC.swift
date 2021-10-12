@@ -43,9 +43,13 @@ final class ImageDetailScreenVC: UIViewController {
         
         scrollView.showsVerticalScrollIndicator = true
         scrollView.contentSize = CGSize(width: 375, height: 1000)
-
-        isLiked = presenter.isLiked
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         presenter.setImages()
+        isLiked = presenter.isLiked
     }
     
     //MARK: - IBActions
@@ -53,8 +57,7 @@ final class ImageDetailScreenVC: UIViewController {
     @IBAction private func shareImage(_ sender: Any) {
         
         let image = self.imageView.image
-        self.activityViewController = UIActivityViewController(activityItems: [image ?? []],
-                                                               applicationActivities: nil)
+        self.activityViewController = UIActivityViewController(activityItems: [image ?? []], applicationActivities: nil)
         
         self.present(self.activityViewController!, animated: true, completion: nil)
     }
@@ -62,6 +65,24 @@ final class ImageDetailScreenVC: UIViewController {
     @IBAction private func addToFavorite(_ sender: Any) {
         
         presenter.addToFavorite(isLiked: isLiked, id: id)
+
+        if presenter.isLiked == true {
+            
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+            
+            let alert = UIAlertController(title: "Добавлено в избранное", message: nil, preferredStyle: .alert)
+            
+            present(alert, animated: true)
+                
+            
+            let when = DispatchTime.now() + 1
+            
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                
+                alert.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 }
 

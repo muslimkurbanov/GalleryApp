@@ -71,9 +71,10 @@ extension GalleryScreenVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         let height = view.frame.size.height
         let width = view.frame.size.width
+        
         return CGSize(width: width * 0.4, height: height * 0.3)
     }
 }

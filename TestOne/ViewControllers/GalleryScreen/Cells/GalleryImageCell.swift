@@ -15,6 +15,11 @@ final class GalleryImageCell: UICollectionViewCell {
     
     @IBOutlet private weak var imageView: UIImageView!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+    
     func configurate(model: Image) {
         
         imageView.isSkeletonable = true

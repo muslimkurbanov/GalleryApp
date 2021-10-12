@@ -11,7 +11,6 @@
         <!--Информация-->
         <scene sceneID="jlZ-Sx-8Wx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Av-bM-G8o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="detail" id="Nsm-Cq-fpC" customClass="ImageDetailScreenVC" customModule="TestOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hjG-xD-o26">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
@@ -132,6 +131,7 @@
                         <outlet property="scrollView" destination="smD-Lw-62D" id="HKM-1b-RZQ"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Av-bM-G8o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="33" y="50"/>
         </scene>

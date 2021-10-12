@@ -79,4 +79,11 @@ final class FavoriteManager {
             }
         }
     }
+    
+    func removeAll() {
+        
+        AddToFavoriteManager.shared.removeFavorites()
+        images = []
+        defaults.removeObject(forKey: menuKey)
+    }
 }

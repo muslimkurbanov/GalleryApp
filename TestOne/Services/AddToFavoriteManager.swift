@@ -41,4 +41,9 @@ final class AddToFavoriteManager {
         defaults.set(dishesCopy, forKey: menuKey)
         return added
     }
+    
+    func removeFavorites() {
+        
+        defaults.removeObject(forKey: menuKey)
+    }
 }
